@@ -1,0 +1,505 @@
+Adán;por;480632;Atlético De Madrid;1
+Oblak;por;51636336;Atlético De Madrid;274
+Unai Simón;por;10820037;Athletic Club;29
+Herrerín;por;1614262;Athletic Club;155
+Ter Stegen;por;41843856;FC Barcelona;239
+Neto;por;2102895;FC Barcelona;206
+Joel Robles;por;3195871;Real Betis;34
+Rubén Blanco;por;6327639;RC Celta;110
+Sergio A.;por;743771;RC Celta;56
+Iván Villar;por;360567;RC Celta;0
+Diego López;por;14916009;RCD Espanyol;216
+David Soria;por;17377162;Getafe CF;234
+Chichizola;por;506006;Getafe CF;3
+Aitor Fdez.;por;4627448;Levante UD;89
+Oier;por;911615;Levante UD;124
+Courtois;por;26221293;Real Madrid;151
+Lunin;por;653873;R. Valladolid CF;29
+Moyá;por;8325326;Real Sociedad;59
+Remiro;por;1073049;Real Sociedad;0
+Vaclík;por;25717896;Sevilla FC;180
+Jaume Domenech;por;558714;Valencia CF;37
+Cillessen;por;30704403;Valencia CF;19
+Masip;por;5815587;R. Valladolid CF;199
+Barbosa;por;457362;Villarreal CF;0
+Asenjo;por;9155892;Villarreal CF;204
+Andrés Fdez.;por;1603332;Villarreal CF;34
+Pacheco;por;17642117;D. Alavés;182
+Sivera;por;518984;D. Alavés;14
+Dmitrović;por;4355437;SD Eibar;122
+Cuéllar;por;6762106;CD Leganés;178
+Soriano;por;379235;CD Leganés;26
+André Grandi;por;363679;CD Leganés;0
+Rui Silva;por;2369101;Granada CF;0
+Aarón Escandell;por;351473;Granada CF;0
+Parera;por;357450;RCD Mallorca;0
+Manuel Reina;por;3836305;RCD Mallorca;0
+Rubén;por;3477754;C.A. Osasuna;0
+S. Herrera;por;386373;C.A. Osasuna;0
+Dani Martín;por;1537722;Real Betis;0
+Andrés Prieto;por;885194;RCD Espanyol;0
+Bono;por;3040399;Sevilla FC;0
+Yoel;por;570373;SD Eibar;0
+Fabricio;por;796996;RCD Mallorca;0
+Areola;por;3486863;Real Madrid;0
+Iñaki Peña;por;503135;FC Barcelona;0
+Arias;def;3752802;Atlético De Madrid;130
+Giménez;def;35856143;Atlético De Madrid;156
+Savić;def;23750292;Atlético De Madrid;96
+San José;def;1004104;Athletic Club;92
+Balenziaga;def;463851;Athletic Club;29
+De Marcos;def;2883946;Athletic Club;112
+Lekue;def;454671;Athletic Club;11
+Yuri;def;25885808;Athletic Club;192
+Iñigo Martínez;def;11713398;Athletic Club;164
+Yeray;def;19457870;Athletic Club;161
+Unai Núñez;def;6352956;Athletic Club;64
+Capa;def;25252980;Athletic Club;87
+Jordi Alba;def;39495299;FC Barcelona;222
+Piqué;def;38946994;FC Barcelona;285
+N. Semedo;def;10248862;FC Barcelona;110
+Sergi Roberto;def;23284069;FC Barcelona;130
+Umtiti;def;8629736;FC Barcelona;70
+Lenglet;def;22246694;FC Barcelona;126
+Todibo;def;609362;FC Barcelona;13
+Feddal;def;1109067;Real Betis;105
+Mandi;def;5765218;Real Betis;159
+Júnior;def;4018310;FC Barcelona;127
+Barragán;def;525254;Real Betis;29
+Bartra;def;17868792;Real Betis;165
+Sidnei;def;2067729;Real Betis;97
+Francis;def;544217;Real Betis;92
+Juncà;def;373023;RC Celta;65
+Olaza;def;1571930;RC Celta;36
+Hugo Mallo;def;3789478;RC Celta;139
+David Costas;def;580097;RC Celta;54
+Kevin Vázquez;def;1625675;RC Celta;4
+Néstor Araújo;def;6728737;RC Celta;158
+Naldo;def;1379433;RCD Espanyol;101
+Javi López;def;701458;RCD Espanyol;91
+Hermoso;def;17007988;Atlético De Madrid;211
+David López;def;2631922;RCD Espanyol;97
+Dídac;def;1317265;RCD Espanyol;105
+Bernardo;def;2819888;RCD Espanyol;181
+Bruno;def;1666384;Getafe CF;145
+Damián;def;3222164;Getafe CF;171
+Antunes;def;652305;Getafe CF;147
+Mathías Olivera;def;457596;Getafe CF;44
+Cabrera;def;2191016;Getafe CF;157
+Djené;def;19439882;Getafe CF;212
+Coke;def;817635;Levante UD;114
+Toño;def;754162;Levante UD;100
+Vezo;def;4232212;Levante UD;104
+Cabaco;def;605384;Levante UD;63
+Postigo;def;4842031;Levante UD;81
+Miramón;def;1588106;Levante UD;137
+Carvajal;def;20225327;Real Madrid;125
+Marcelo;def;20655352;Real Madrid;84
+Sergio Ramos;def;46624169;Real Madrid;195
+Varane;def;28270630;Real Madrid;175
+Nacho;def;1706100;Real Madrid;96
+Odriozola;def;1421826;Real Madrid;67
+Kévin Rodrigues;def;467549;CD Leganés;25
+Robin Le Normand;def;843431;Real Sociedad;2
+Raúl Navas;def;538364;C.A. Osasuna;84
+Gorosabel;def;404283;Real Sociedad;25
+Zaldua;def;2614808;Real Sociedad;114
+Aritz;def;830748;Real Sociedad;145
+Aihen Muñoz;def;590260;Real Sociedad;36
+Héctor Moreno;def;711831;Real Sociedad;102
+Diego Llorente;def;2448620;Real Sociedad;106
+Carriço;def;15322621;Sevilla FC;139
+Aleix Vidal;def;14671574;D. Alavés;30
+Escudero;def;1830422;Sevilla FC;88
+Sergi Gómez;def;1005625;Sevilla FC;140
+Navas;def;27667058;Sevilla FC;163
+Reguilón;def;36990740;Sevilla FC;66
+Piccini;def;1891403;Valencia CF;103
+Diakhaby;def;3613305;Valencia CF;135
+Gabriel Paulista;def;18099267;Valencia CF;192
+Gayá;def;18949479;Valencia CF;203
+Garay;def;16051902;Valencia CF;156
+Calero;def;4915397;RCD Espanyol;186
+Nacho;def;3572489;R. Valladolid CF;154
+Joaquín Fernández;def;357637;R. Valladolid CF;45
+Kiko Olivas;def;3775619;R. Valladolid CF;187
+Moyano;def;500947;R. Valladolid CF;123
+Jaume Costa;def;1913466;Valencia CF;75
+Mario;def;2349306;Villarreal CF;132
+Pedraza;def;3972582;Real Betis;134
+Funes Mori;def;2575223;Villarreal CF;152
+Rubén Peña;def;932820;Villarreal CF;148
+Rubén Duarte;def;6638904;D. Alavés;132
+Rodrigo Ely;def;11721629;D. Alavés;11
+Adrián Marín;def;820394;D. Alavés;11
+Martín;def;5832514;D. Alavés;82
+Ximo Navarro;def;1384471;D. Alavés;170
+Laguardia;def;8672612;D. Alavés;199
+Bigas;def;439994;SD Eibar;35
+José A. Cote;def;1273358;SD Eibar;177
+Arbilla;def;2753220;SD Eibar;119
+Ramis;def;1269097;SD Eibar;102
+Paulo Oliveira;def;2744981;SD Eibar;99
+Tarín;def;432566;CD Leganés;92
+Bustinza;def;900506;CD Leganés;116
+Jonathan Silva;def;2204882;CD Leganés;182
+Kravets;def;373060;CD Leganés;28
+Siovas;def;4178920;CD Leganés;198
+Felipe;def;2440578;Atlético De Madrid;0
+Renan Lodi;def;14168559;Atlético De Madrid;0
+Adrià Pedrosa;def;843182;RCD Espanyol;0
+Lluís López;def;351479;RCD Espanyol;0
+Raúl García;def;435607;Getafe CF;157
+Clerc;def;509964;Levante UD;0
+Militão;def;3469416;Real Madrid;0
+Mendy;def;3846044;Real Madrid;0
+Sagnan;def;596218;Real Sociedad;0
+Diego Carlos;def;18654510;Sevilla FC;0
+Koundé;def;2879500;Sevilla FC;0
+Jorge Sáenz;def;572423;RC Celta;-2;0
+Fede Barba;def;380313;R. Valladolid CF;0
+Albiol;def;3976070;Villarreal CF;0
+Tejero;def;579982;SD Eibar;0
+Esteban Burgos;def;376172;SD Eibar;0
+Rober Correa;def;367122;SD Eibar;0
+Martínez;def;373023;Granada CF;0
+Victor Díaz;def;877645;Granada CF;0
+Carlos Neva;def;364197;Granada CF;0
+Germán;def;670260;Granada CF;0
+Neyder Lozano;def;364746;Granada CF;0
+Quini;def;824594;Granada CF;0
+Álex Martínez;def;399773;Granada CF;0
+Valjent;def;1854640;RCD Mallorca;0
+Gámez;def;363913;RCD Mallorca;0
+Sastre;def;685881;RCD Mallorca;7
+Xisco Campos;def;351220;RCD Mallorca;0
+Raíllo;def;1513968;RCD Mallorca;0
+Nacho Vidal;def;3732327;C.A. Osasuna;0
+Aridane;def;7604678;C.A. Osasuna;0
+Unai García;def;409879;C.A. Osasuna;0
+David García;def;3684253;C.A. Osasuna;0
+Estupiñán;def;5797175;C.A. Osasuna;0
+Emerson;def;3842790;Real Betis;0
+Alberto Moreno;def;2837007;Villarreal CF;0
+Aidoo;def;6159810;RC Celta;0
+Sedlar;def;448792;RCD Mallorca;0
+Domingos Duarte;def;1193565;Granada CF;0
+Trippier;def;39947025;Atlético De Madrid;0
+Nyom;def;1547645;Getafe CF;0
+Rosales;def;2453172;CD Leganés;0
+Marc Navarro;def;1122098;CD Leganés;0
+Javi Sánchez;def;598550;R. Valladolid CF;0
+Alberto Rodríguez;def;475726;D. Alavés;0
+Lumor;def;1381024;RCD Mallorca;0
+Óscar Duarte;def;719998;Levante UD;0
+Pedro Porro;def;4570409;R. Valladolid CF;0
+Etxeita;def;596904;Getafe CF;0
+Mangala;def;4123176;Valencia CF;0
+Omeruo;def;1930143;CD Leganés;0
+Awaziem;def;730771;CD Leganés;0
+Pau Torres;def;1098995;Villarreal CF;0
+Quintillà;def;391944;Villarreal CF;0
+Corchia;def;490967;RCD Espanyol;0
+Salisu;def;394654;R. Valladolid CF;0
+Álex Moreno;def;1702078;Real Betis;0
+Ganea;def;434399;Athletic Club;0
+Thierry Correia;def;389074;Valencia CF;0
+Róber Pier;def;1250246;Levante UD;0
+Magallan;def;1481917;D. Alavés;0
+Ismail;def;343751;Granada CF;0
+Vrsaljko;def;2928674;Atlético De Madrid;0
+Monreal;def;8133482;Real Sociedad;0
+Roncaglia;def;3663820;C.A. Osasuna;0
+Lillo;def;945503;C.A. Osasuna;0
+Antoñito;def;2745862;R. Valladolid CF;0
+Moussa Wague;def;503135;FC Barcelona;0
+Ivan Lopez;def;945503;Levante UD;0
+Koke;mig;29352765;Atlético De Madrid;164
+Lemar;mig;18987637;Atlético De Madrid;137
+Thomas;mig;13036966;Atlético De Madrid;133
+Vitolo;mig;9912741;Atlético De Madrid;72
+Saúl;mig;33355806;Atlético De Madrid;164
+Marcos Llorente;mig;15181125;Atlético De Madrid;39
+Dani García;mig;8351073;Athletic Club;117
+Muniain;mig;19829100;Athletic Club;179
+Unai López;mig;3124579;Athletic Club;16
+Beñat;mig;1411820;Athletic Club;126
+Ibai;mig;4386299;Athletic Club;151
+Córdoba;mig;639683;Athletic Club;82
+Raúl García;mig;25288638;Athletic Club;157
+Vesga;mig;537024;Athletic Club;119
+Rakitić;mig;18071099;FC Barcelona;189
+Aleñá;mig;872259;FC Barcelona;59
+Arthur;mig;10463666;FC Barcelona;103
+Rafinha;mig;9289821;RC Celta;8
+Arturo Vidal;mig;7754692;FC Barcelona;158
+Busquets;mig;26577248;FC Barcelona;168
+Guardado;mig;3711063;Real Betis;116
+Tello;mig;2625897;Real Betis;130
+Kaptoum;mig;384807;Real Betis;28
+William Carvalho;mig;6579322;Real Betis;130
+Diego Lainez;mig;667311;Real Betis;24
+Javi García;mig;636892;Real Betis;33
+Canales;mig;19411316;Real Betis;187
+Joaquín;mig;4977711;Real Betis;145
+Brasanac;mig;1215129;C.A. Osasuna;78
+Inui;mig;2220480;SD Eibar;90
+Fran Beltrán;mig;2475039;RC Celta;87
+Brais Méndez;mig;5765476;RC Celta;157
+Sisto;mig;4065571;RC Celta;76
+Lobotka;mig;3256759;RC Celta;126
+Okay;mig;1736784;RC Celta;124
+Víctor Sánchez;mig;541368;RCD Espanyol;61
+Granero;mig;963151;RCD Espanyol;130
+Darder;mig;3360987;RCD Espanyol;157
+Melendo;mig;2231420;RCD Espanyol;135
+Marc Roca;mig;9456001;RCD Espanyol;174
+Arambarri;mig;1957677;Getafe CF;149
+Markel Bergara;mig;442608;Getafe CF;6
+Flamini;mig;378838;Getafe CF;19
+Portillo;mig;660605;Getafe CF;112
+Maksimovic;mig;978819;Getafe CF;162
+Amath;mig;673207;Getafe CF;64
+Rochina;mig;2542339;Levante UD;137
+Campaña;mig;5980985;Levante UD;227
+Bardhi;mig;3399527;Levante UD;163
+Morales;mig;26582311;Levante UD;214
+Vukčević;mig;1304767;Levante UD;47
+Melero;mig;922767;Levante UD;90
+Isco;mig;13471163;Real Madrid;87
+Modrić;mig;27613357;Real Madrid;176
+Brahim Díaz;mig;891703;Real Madrid;40
+Asensio;mig;3934741;Real Madrid;127
+Fede Valverde;mig;470295;Real Madrid;49
+Casemiro;mig;29812436;Real Madrid;133
+Lucas Vázquez;mig;5414283;Real Madrid;97
+Kroos;mig;36940082;Real Madrid;124
+Zurutuza;mig;482210;Real Sociedad;84
+Oyarzabal;mig;39197401;Real Sociedad;219
+Zubeldia;mig;6643690;Real Sociedad;157
+Sangalli;mig;470988;Real Sociedad;37
+Rubén Pardo;mig;531281;Real Sociedad;101
+Januzaj;mig;4523777;Real Sociedad;118
+Illarramendi;mig;15604835;Real Sociedad;111
+Ander Guevara;mig;357540;Real Sociedad;6
+Mikel Merino;mig;5633023;Real Sociedad;141
+F. Vázquez;mig;2586242;Sevilla FC;156
+Banega;mig;16560078;Sevilla FC;166
+Roque Mesa;mig;1751462;CD Leganés;118
+Joan Jordán;mig;42131688;Sevilla FC;217
+Wass;mig;20091540;Valencia CF;139
+Cheryshev;mig;2094616;Valencia CF;112
+Guedes;mig;34790540;Valencia CF;136
+Coquelin;mig;4395304;Valencia CF;137
+Soler;mig;9564083;Valencia CF;165
+Lee Kang-In;mig;417889;Valencia CF;1
+Parejo;mig;48578187;Valencia CF;278
+Kondogbia;mig;16274526;Valencia CF;95
+Jason;mig;1202699;Getafe CF;123
+Óscar Plano;mig;7420808;R. Valladolid CF;142
+Luismi;mig;373023;R. Valladolid CF;0
+Alcaraz;mig;1551664;R. Valladolid CF;166
+Hervías;mig;358335;R. Valladolid CF;18
+Anuar;mig;382369;R. Valladolid CF;59
+Toni;mig;630029;R. Valladolid CF;127
+Trigueros;mig;3172983;Villarreal CF;80
+Morlanes;mig;351739;Villarreal CF;44
+Samu Chukwueze;mig;12044456;Villarreal CF;107
+Cáseres;mig;570557;Villarreal CF;70
+Iborra;mig;5032310;Villarreal CF;85
+Bruno;mig;467367;Villarreal CF;0
+Cazorla;mig;30672862;Villarreal CF;213
+Manu García;mig;1078837;D. Alavés;123
+Wakaso;mig;5101085;D. Alavés;104
+Tomás Pina;mig;6950681;D. Alavés;130
+Pere Pons;mig;1221909;D. Alavés;129
+Cucurella;mig;15268773;Getafe CF;128
+Orellana;mig;7305604;SD Eibar;187
+Sergio Álvarez;mig;563841;SD Eibar;61
+Pedro León;mig;4903670;SD Eibar;30
+Escalante;mig;743634;SD Eibar;122
+Pablo de Blasis;mig;498021;SD Eibar;72
+Diop;mig;753264;SD Eibar;102
+Eraso;mig;658667;CD Leganés;32
+Recio;mig;545793;CD Leganés;61
+Rubén Pérez;mig;931135;CD Leganés;118
+Szymanowski;mig;514552;CD Leganés;2
+Óscar Rodríguez;mig;2435283;CD Leganés;171
+Héctor Herrera;mig;3121470;Atlético De Madrid;0
+De Jong;mig;41217398;FC Barcelona;0
+Denis Suárez;mig;42219999;RC Celta;5
+Pol Lozano;mig;348144;RCD Espanyol;0
+Ødegaard;mig;34048031;Real Sociedad;0
+San Emeterio;mig;579365;R. Valladolid CF;0
+Leo Suárez;mig;397025;Villarreal CF;53
+Fede Varela;mig;396015;CD Leganés;0
+Fede Vico;mig;2093588;Granada CF;0
+Montoro;mig;2381497;Granada CF;0
+Baba;mig;2355049;RCD Mallorca;0
+Dani Rodríguez;mig;3559163;RCD Mallorca;0
+Salva Sevilla;mig;1979381;RCD Mallorca;0
+Pedraza;mig;414281;RCD Mallorca;0
+Jon Moncayola;mig;465731;C.A. Osasuna;0
+Luis Perea;mig;363679;C.A. Osasuna;0
+Fran Mérida;mig;504810;C.A. Osasuna;0
+Roberto Torres;mig;6958976;C.A. Osasuna;0
+Iñigo Pérez;mig;373441;C.A. Osasuna;0
+Iturraspe;mig;605848;RCD Espanyol;0
+Febas;mig;1590605;RCD Mallorca;0
+Fernando;mig;14631195;Sevilla FC;0
+Edu Expósito;mig;546620;SD Eibar;0
+Óliver Torres;mig;5742119;Sevilla FC;0
+Eteki;mig;976033;Granada CF;0
+Moi Gómez;mig;14256434;Villarreal CF;0
+Gudelj;mig;1283414;Sevilla FC;0
+Yangel Herrera;mig;1140409;Granada CF;0
+Anguissa;mig;983716;Villarreal CF;0
+Bryan Gil;mig;819968;Sevilla FC;0
+James Rodríguez;mig;7657560;Real Madrid;0
+Fajr;mig;1059363;Getafe CF;0
+Barrenetxea;mig;435257;Real Sociedad;0
+Josep Señé;mig;368275;RCD Mallorca;0
+Waldo;mig;3284076;R. Valladolid CF;0
+Pape Cheikh;mig;688531;RC Celta;0
+Azeez;mig;392860;Granada CF;0
+Ontiveros;mig;3998933;Villarreal CF;0
+Radoja;mig;1170992;Levante UD;0
+Oier;mig;747265;C.A. Osasuna;0
+Timor;mig;522177;Getafe CF;0
+Christian Rivera;mig;763262;CD Leganés;0
+Gonalons;mig;1104376;Granada CF;0
+Kenedy;mig;2503495;Getafe CF;0
+Oliver Burke;mig;1023622;D. Alavés;0
+Michel;mig;5498387;R. Valladolid CF;0
+Riquelme;mig;503135;Atlético De Madrid;0
+D. Torres;mig;945503;D. Alavés;0
+Pipa;mig;945503;RCD Espanyol;0
+Morata;dav;32960408;Atlético De Madrid;79
+Diego Costa;dav;31570810;Atlético De Madrid;50
+Correa;dav;2053612;Atlético De Madrid;128
+Aduriz;dav;3325075;Athletic Club;54
+Kenan Kodro;dav;422612;Athletic Club;23
+Villalibre;dav;379275;Athletic Club;0
+Williams;dav;42298889;Athletic Club;197
+Luis Suárez;dav;58466663;FC Barcelona;235
+Messi;dav;109732021;FC Barcelona;398
+Dembélé;dav;11631791;FC Barcelona;171
+Loren;dav;10494186;Real Betis;113
+Juanmi;dav;1703755;Real Betis;113
+Aspas;dav;50953047;RC Celta;215
+Maxi Gómez;dav;17451295;Valencia CF;155
+Piatti;dav;574479;RCD Espanyol;52
+Puado;dav;357083;RCD Espanyol;32
+Wu Lei;dav;4389764;RCD Espanyol;73
+Borja Iglesias;dav;31898998;Real Betis;208
+Mata;dav;9344371;Getafe CF;165
+Jorge Molina;dav;4859510;Getafe CF;208
+Ángel;dav;2537974;Getafe CF;152
+Roger;dav;7834897;Levante UD;134
+Borja Mayoral;dav;2712348;Levante UD;96
+Sergio León;dav;3278997;Levante UD;35
+Vinícius Jr.;dav;17649000;Real Madrid;76
+Mariano;dav;1531813;Real Madrid;36
+Bale;dav;40297656;Real Madrid;122
+Benzema;dav;70731971;Real Madrid;241
+Willian José;dav;14246305;Real Sociedad;134
+Portu;dav;9180181;Real Sociedad;160
+Nolito;dav;13426327;Sevilla FC;3
+Munir;dav;2412576;Sevilla FC;88
+Gameiro;dav;9623674;Valencia CF;119
+Santi Mina;dav;13911018;RC Celta;136
+Sobrino;dav;482904;Valencia CF;78
+Rodrigo;dav;35569305;Valencia CF;162
+Ferrán Torres;dav;1073555;Valencia CF;70
+Enes Ünal;dav;879668;R. Valladolid CF;110
+Sergi Guardiola;dav;12124884;R. Valladolid CF;77
+Sandro;dav;1815030;R. Valladolid CF;66
+Gerard;dav;33118894;Villarreal CF;145
+Bacca;dav;4030219;Villarreal CF;107
+Toko Ekambi;dav;10279874;Villarreal CF;155
+Burgui;dav;452863;D. Alavés;36
+Guidetti;dav;518394;D. Alavés;51
+Kike García;dav;587753;SD Eibar;76
+Sergi Enrich;dav;2274268;SD Eibar;136
+Charles;dav;1552130;SD Eibar;153
+Arnáiz;dav;685302;CD Leganés;10
+Sabin Merino;dav;455813;CD Leganés;21
+En-Nesyri;dav;3617687;CD Leganés;124
+Chimy Ávila;dav;6049317;C.A. Osasuna;126
+Marc Cardona;dav;542650;C.A. Osasuna;59
+João Félix;dav;82132421;Atlético De Madrid;0
+Gaizka Larrazabal;dav;365987;Athletic Club;0
+Gabriel Fernández;dav;1781745;RC Celta;0
+Hernâni;dav;635273;Levante UD;0
+Hazard;dav;66384542;Real Madrid;0
+Jović;dav;12049140;Real Madrid;0
+Rodrygo;dav;2504113;Real Madrid;0
+Isak;dav;2590092;Real Sociedad;0
+Dabbur;dav;3050624;Sevilla FC;0
+Luuk de Jong;dav;12458599;Sevilla FC;0
+Ocampos;dav;7512334;Sevilla FC;0
+Manu Vallejo;dav;723037;Valencia CF;0
+De Frutos;dav;357789;R. Valladolid CF;0
+Lucas Pérez;dav;2527028;D. Alavés;0
+Luis Rioja;dav;1059197;D. Alavés;0
+Aitor Ruibal;dav;406733;CD Leganés;0
+Adrián Ramos;dav;558214;Granada CF;0
+Antonio Puertas;dav;4740211;Granada CF;0
+Vadillo;dav;672770;Granada CF;0
+Ante Budimir;dav;858257;RCD Mallorca;0
+Álex Alegría;dav;438057;RCD Mallorca;16
+Aridai;dav;393744;RCD Mallorca;0
+Abdón Prats;dav;415254;RCD Mallorca;0
+Lago Júnior;dav;4088105;RCD Mallorca;0
+Pablo Chavarría;dav;449225;RCD Mallorca;0
+Juan Villar;dav;401989;C.A. Osasuna;0
+Kike Barja;dav;416429;C.A. Osasuna;0
+Rubén García;dav;731736;C.A. Osasuna;0
+Brandon;dav;410330;C.A. Osasuna;0
+Ivan Saponjic;dav;907835;Atlético De Madrid;0
+Enric Gallego;dav;2165996;Getafe CF;0
+Griezmann;dav;68748564;FC Barcelona;0
+Quique Gonzalez;dav;685825;SD Eibar;0
+Matias Vargas;dav;4029369;RCD Espanyol;0
+Soldado;dav;11608131;Granada CF;0
+Fekir;dav;46103114;Real Betis;0
+Braithwaite;dav;6608922;CD Leganés;0
+Darwin Machis;dav;3461801;Granada CF;0
+Ferreyra;dav;2156696;RCD Espanyol;0
+Adrián López;dav;672897;C.A. Osasuna;0
+Trajkovski;dav;740606;RCD Mallorca;0
+Joselu;dav;9410639;D. Alavés;0
+Rony Lopes;dav;3409262;Sevilla FC;0
+Carlos Fernández;dav;901900;Granada CF;0
+Iker Losada;dav;344466;RC Celta;0
+Kubo;dav;4320039;RCD Mallorca;0
+Salibur;dav;653065;RCD Mallorca;0
+Campuzano;dav;415684;RCD Espanyol;0
+Calleri;dav;3291772;RCD Espanyol;0
+Ansu Fati;dav;5536584;FC Barcelona;0
+Guido Carrillo;dav;2977852;CD Leganés;0
+Juan Hernández;dav;343751;RC Celta;0
+Chicharito;dav;10157331;Sevilla FC;0
+Rober Ibañez;dav;1387871;C.A. Osasuna;0
+C. Pérez;dav;509839;FC Barcelona;0
+Beauvue;dav;945503;RC Celta;0
+Fake_goa1;por;0;FakeTeam;0
+Fake_goa2;por;0;FakeTeam;0
+Fake_goa3;por;0;FakeTeam;0
+Fake_goa4;por;0;FakeTeam;0
+Fake_goa5;por;0;FakeTeam;0
+Fake_def1;def;0;FakeTeam;0
+Fake_def2;def;0;FakeTeam;0
+Fake_def3;def;0;FakeTeam;0
+Fake_def4;def;0;FakeTeam;0
+Fake_def5;def;0;FakeTeam;0
+Fake_mid1;mig;0;FakeTeam;0
+Fake_mid2;mig;0;FakeTeam;0
+Fake_mid3;mig;0;FakeTeam;0
+Fake_mid4;mig;0;FakeTeam;0
+Fake_mid5;mig;0;FakeTeam;0
+Fake_str1;dav;0;FakeTeam;0
+Fake_str2;dav;0;FakeTeam;0
+Fake_str3;dav;0;FakeTeam;0
+Fake_str4;dav;0;FakeTeam;0
+Fake_str5;dav;0;FakeTeam;0
