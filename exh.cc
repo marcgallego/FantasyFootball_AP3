@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <ctime>
 using namespace std;
 
 /*****
@@ -72,8 +73,6 @@ struct Alignment {
         total_score = 0;
     }
 
-    // Add a player to the Aligment
-    // Precondition: the position of the player is not full
     void add(const Player& p) {
         if (p.pos == "por") POR = p;
         if (p.pos == "def") {
@@ -94,7 +93,7 @@ struct Alignment {
 };
 
 // Esto es muy extra, para poder hacer cout << Alignment;
-// Si no te gusta, se puede hacer un print normal (sera mes o menys igual)
+// Si no te gusta, se puede hacer un print normal;
 ostream & operator << (ostream &out, const Alignment &a) {
     out << "POR: " << a.POR.name;
     out << endl << "DEF: ";
@@ -110,7 +109,6 @@ ostream & operator << (ostream &out, const Alignment &a) {
     out << "Preu: " << a.total_price << endl;
     return out;
 }
-
 
 /*****
 * INPUT
@@ -153,8 +151,6 @@ Alignment exh(DB db, Input input) {
     return solution;
 }
 
-
-
 /*
 *  Example of use: ./exh.out data_base.txt public_benchs/easy-1.txt
 */
@@ -167,6 +163,8 @@ int main(int argc, char** argv) {
     input.read(argv[2]);
 
     // Aqui empieza la magia :)
+    const clock_t begin_time = clock();
     Alignment solution = exh(players, input);
+    cout << float( clock () - begin_time ) / CLOCKS_PER_SEC << endl;
     cout << solution;
 }
