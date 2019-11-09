@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cassert>
 #include <string>
 #include <vector>
 #include <ctime>
@@ -29,7 +30,7 @@ struct Player {
     }
 
     // A player is "lower" than another if it has lower score
-    bool operator<(const Player& p) {
+    bool operator < (const Player& p) {
         return score < p.score;
     }
 };
@@ -76,15 +77,15 @@ struct Alignment {
     void add(const Player& p) {
         if (p.pos == "por") POR = p;
         if (p.pos == "def") {
-            assert(DEF.size() < nDEF);
+            assert(int(DEF.size()) < nDEF);
             DEF.push_back(p);
         }
         if (p.pos == "mig") {
-            assert(MID.size() < nMID);
+            assert(int(MID.size()) < nMID);
             MID.push_back(p);
         }
         if (p.pos == "dav") {
-            assert(ATK.size() < nATK);
+            assert(int(ATK.size()) < nATK);
             ATK.push_back(p);
         }
         total_price += p.price;
@@ -125,7 +126,9 @@ struct Input {
     }
 };
 
-
+Alignment exh(const DB &db, const Input &input){
+    
+}
 
 // Algorisme: agafa els primers jugadors de la DB sense mirar preus ni score
 Alignment exh(DB db, Input input) {
