@@ -81,11 +81,11 @@ struct Alignment {
             DEF.push_back(p);
         }
         if (p.pos == "mig") {
-            assert(MID.size() < nDEF);
+            assert(MID.size() < nMID);
             MID.push_back(p);
         }
         if (p.pos == "dav") {
-            assert(ATK.size() < nDEF);
+            assert(ATK.size() < nATK);
             ATK.push_back(p);
         }
         total_price += p.price;
