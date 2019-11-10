@@ -72,6 +72,7 @@ struct Alignment {
         nDEF = n1; nMID = n2; nATK = n3;
         total_price = 0;
         total_score = 0;
+        POR.name = "";
     }
 
     void add(const Player& p) {
@@ -90,6 +91,12 @@ struct Alignment {
         }
         total_price += p.price;
         total_score += p.score;
+    }
+
+    int dim(){
+        int n = DEF.size() + MID.size() + ATK.size();
+        if(POR.name != "") n++;
+        return n;
     }
 };
 
@@ -126,12 +133,20 @@ struct Input {
     }
 };
 
+
+void search(Alignment& s, const DB &db, const Input &input){
+    if(s.dim() == 11) return;
+
+}
+
 Alignment exh(const DB &db, const Input &input){
-    
+    Alignment solution(input.N1, input.N2, input.N3);
+    search(solution, db, input);
+    return solution;
 }
 
 // Algorisme: agafa els primers jugadors de la DB sense mirar preus ni score
-Alignment exh(DB db, Input input) {
+Alignment exh_fake(const DB &db, const Input &input){
     Alignment solution(input.N1, input.N2, input.N3);
     int i = 0;
     while (db[i].pos != "por") i++;
@@ -153,9 +168,8 @@ Alignment exh(DB db, Input input) {
     }
     return solution;
 }
-
 /*
-*  Example of use: ./exh.out data_base.txt public_benchs/easy-1.txt
+*  Example of use: ./a.out data_base.txt public_benchs/easy-1.txt
 */
 int main(int argc, char** argv) {
     assert(argc == 3);
@@ -167,7 +181,9 @@ int main(int argc, char** argv) {
 
     // Aqui empieza la magia :)
     const clock_t begin_time = clock();
-    Alignment solution = exh(players, input);
+    Alignment solution = exh_fake(players, input);
     cout << float( clock () - begin_time ) / CLOCKS_PER_SEC << endl;
     cout << solution;
+    
+    cerr << solution.dim() << endl;
 }
