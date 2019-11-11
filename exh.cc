@@ -44,7 +44,7 @@ using DB = vector<Player>;
 // Load all the database in a vector of players
 DB readDB(string file) {
     ifstream in(file);
-    vector<Player> players;
+    DB players; //Potser per rendiment seria millor declarar-ho al main i passar-ho per ref (?)
     while (not in.eof()) {
         Player player;
         if (not player.read(in)) break;
