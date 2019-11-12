@@ -230,6 +230,9 @@ Alignment exh_fake(const DB &db, const Input &input){
 int main(int argc, char** argv) {
     assert(argc == 3);
 
+    cout.setf(ios::fixed);
+    cout.precision(1);
+
     // Read all input
     Input input;
     input.read(argv[2]);
