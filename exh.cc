@@ -157,7 +157,7 @@ ostream & operator << (ostream &out, const Alignment &a) {
     out << endl << "DEF: ";
     for (int i = 0; i < a.nDEF; i++)
         out << (i == 0 ? "" : ";") << a.DEF[i].name;
-    out << endl << "MID: ";
+    out << endl << "MIG: ";
     for (int i = 0; i < a.nMID; i++)
         out << (i == 0 ? "" : ";") << a.MID[i].name;
     out << endl << "DAV: ";
