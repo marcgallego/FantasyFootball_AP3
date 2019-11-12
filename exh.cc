@@ -6,6 +6,23 @@
 #include <ctime>
 using namespace std;
 
+
+/*****
+* INPUT
+* Contains the variables needed for the problem
+*****/
+struct Input {
+    int N1, N2, N3, T, J;
+
+    void read(string file) {
+        ifstream in(file);
+        while (not in.eof())
+            in >> N1 >> N2 >> N3 >> T >> J;
+        in.close();
+    }
+};
+
+
 /*****
 * PLAYER
 * Contains all information about each player
@@ -42,13 +59,13 @@ struct Player {
 using DB = vector<Player>;
 
 // Load all the database in a vector of players
-DB readDB(string file) {
+DB readDB(string file, const Input& input) {
     ifstream in(file);
     DB players; //Potser per rendiment seria millor declarar-ho al main i passar-ho per ref (?)
     while (not in.eof()) {
         Player player;
         if (not player.read(in)) break;
-        players.push_back(player);
+        if (player.price < input.J) players.push_back(player);
     }
     in.close();
     return players;
@@ -68,11 +85,29 @@ struct Alignment {
     int nDEF, nMID, nATK;
     int total_price, total_score;
 
+    Alignment() {
+        total_price = total_score = 0;
+    }
+
     Alignment(int n1, int n2, int n3) {
         nDEF = n1; nMID = n2; nATK = n3;
         total_price = 0;
         total_score = 0;
         POR.name = "";
+    }
+
+    Alignment(const DB& db, vector<bool>& selected, int price, int score){
+        total_price = price; total_score = score;
+        nDEF = nMID = nATK = 0;
+        for (uint i = 0; i < selected.size(); i++) {
+            if (selected[i]) {
+                Player p = db[i];
+                if (p.pos == "por") POR = p;
+                else if (p.pos == "def") { DEF.push_back(p); nDEF++; }
+                else if (p.pos == "mig") { MID.push_back(p); nMID++; }
+                else if (p.pos == "dav") { ATK.push_back(p); nATK++; }
+            }
+        }
     }
 
     void add(const Player& p) {
@@ -118,30 +153,35 @@ ostream & operator << (ostream &out, const Alignment &a) {
     return out;
 }
 
-/*****
-* INPUT
-* Contains the variables needed for the problem
-*****/
-struct Input {
-    int N1, N2, N3, T, J;
 
-    void read(string file) {
-        ifstream in(file);
-        while (not in.eof())
-            in >> N1 >> N2 >> N3 >> T >> J;
-        in.close();
+void search(int i, vector<bool>& used, int price, int score, int por, int n1, int n2, int n3, const DB &db, const Input &input, Alignment& solution){
+    if (n1+n2+n3+por == 11 and score > solution.total_score) {
+        solution = Alignment(db, used, price, score);
+        cerr << solution;
     }
-};
+    if (i > used.size()) return;
+    else {
+        //for (bool b : used) cerr << b << " ";
+        //cerr << endl;
 
+        Player p = db[i];
+        used[i] = true;
+        if (price + p.price <= input.T) {
+                 if (p.pos == "por") { if (por < 1) search(i+1, used, price+p.price, score+p.score, por+1, n1, n2, n3, db, input, solution); }
+            else if (p.pos == "def") { if (n1 < input.N1) search(i+1, used, price+p.price, score+p.score, por, n1+1, n2, n3, db, input, solution); }
+            else if (p.pos == "mig") { if (n2 < input.N2) search(i+1, used, price+p.price, score+p.score, por, n1, n2+1, n3, db, input, solution); }
+            else if (p.pos == "dav") { if (n3 < input.N3) search(i+1, used, price+p.price, score+p.score, por, n1, n2, n3+1, db, input, solution); }
+        }
 
-void search(Alignment& s, const DB &db, const Input &input){
-    if(s.dim() == 11) return;
-
+        used[i] = false;
+        search(i+1, used, price, score, por, n1, n2, n3, db, input, solution);
+    }
 }
 
 Alignment exh(const DB &db, const Input &input){
-    Alignment solution(input.N1, input.N2, input.N3);
-    search(solution, db, input);
+    vector<bool> used (db.size(), false);
+    Alignment solution = Alignment();
+    search(0, used, 0, 0, 0, 0, 0, 0, db, input, solution);
     return solution;
 }
 
@@ -175,15 +215,15 @@ int main(int argc, char** argv) {
     assert(argc == 3);
 
     // Read all input
-    DB players = readDB(argv[1]);
     Input input;
     input.read(argv[2]);
+    DB players = readDB(argv[1], input);
 
     // Aqui empieza la magia :)
     const clock_t begin_time = clock();
-    Alignment solution = exh_fake(players, input);
+    Alignment solution = exh(players, input);
     cout << float( clock () - begin_time ) / CLOCKS_PER_SEC << endl;
     cout << solution;
-    
+
     cerr << solution.dim() << endl;
 }
