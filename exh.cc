@@ -224,11 +224,22 @@ Alignment exh_fake(const DB &db, const Input &input){
     }
     return solution;
 }
+
+void write(const string& file_name, const Alignment& solution, float time){
+    ofstream out(file_name);
+    out << time << endl;
+    out << solution << endl;
+    out.close();
+
+    cerr << time << endl;
+    cerr << solution << endl;
+}
+
 /*
-*  Example of use: ./a.out data_base.txt public_benchs/easy-1.txt
+*  Example of use: ./a.out data_base.txt public_benchs/easy-1.txt solutions.txt
 */
 int main(int argc, char** argv) {
-    assert(argc == 3);
+    assert(argc == 4);
 
     cout.setf(ios::fixed);
     cout.precision(1);
@@ -241,7 +252,8 @@ int main(int argc, char** argv) {
     // Aqui empieza la magia :)
     const clock_t begin_time = clock();
     Alignment solution = exh(players, input);
-    cout << float( clock () - begin_time ) / CLOCKS_PER_SEC << endl;
-    cout << solution;
+    const float time = float( clock () - begin_time ) / CLOCKS_PER_SEC;
+
+    write(argv[3], solution, time);
 
 }
