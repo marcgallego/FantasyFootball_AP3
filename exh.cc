@@ -56,20 +56,35 @@ struct Player {
 * DB
 * Contains all the players of the database
 *****/
-using DB = vector<Player>;
+struct DB {
+    vector<Player> players;
+    int minPrice;
+    int maxScore;
 
-// Load all the database in a vector of players
-DB readDB(string file, const Input& input) {
-    ifstream in(file);
-    DB players; //Potser per rendiment seria millor declarar-ho al main i passar-ho per ref (?)
-    while (not in.eof()) {
-        Player player;
-        if (not player.read(in)) break;
-        if (player.price < input.J) players.push_back(player);
+    DB (string file, const Input& input) {
+        readDB(file, input);
+
+        minPrice = 1e9; maxScore = 0;
+        for (Player p : players) {
+            if (p.price != 0 and p.price < minPrice) minPrice = p.price;
+            if (p.score > maxScore) maxScore = p.score;
+        }
+
     }
-    in.close();
-    return players;
-}
+
+    void readDB(string file, const Input& input) {
+        ifstream in(file);
+        vector<Player> playerList;
+        while (not in.eof()) {
+            Player player;
+            if (not player.read(in)) break;
+            if (player.price < input.J) playerList.push_back(player);
+        }
+        in.close();
+        players = playerList;
+    }
+};
+
 
 /*****
 * ALIGNMENT
@@ -101,7 +116,7 @@ struct Alignment {
         nDEF = nMID = nATK = 0;
         for (uint i = 0; i < selected.size(); i++) {
             if (selected[i]) {
-                Player p = db[i];
+                Player p = db.players[i];
                 if (p.pos == "por") POR = p;
                 else if (p.pos == "def") { DEF.push_back(p); nDEF++; }
                 else if (p.pos == "mig") { MID.push_back(p); nMID++; }
@@ -164,9 +179,10 @@ void search(int i, vector<bool>& used, int price, int score, int por, int n1, in
         //for (bool b : used) cerr << b << " ";
         //cerr << endl;
 
-        Player p = db[i];
+        Player p = db.players[i];
         used[i] = true;
-        if (price + p.price <= input.T) {
+        if (price + p.price + (10-por-n1-n2-n3)*db.minPrice <= input.T and
+            score + p.score + (10-por-n1-n2-n3)*db.maxScore > solution.total_score) {
                  if (p.pos == "por") { if (por < 1) search(i+1, used, price+p.price, score+p.score, por+1, n1, n2, n3, db, input, solution); }
             else if (p.pos == "def") { if (n1 < input.N1) search(i+1, used, price+p.price, score+p.score, por, n1+1, n2, n3, db, input, solution); }
             else if (p.pos == "mig") { if (n2 < input.N2) search(i+1, used, price+p.price, score+p.score, por, n1, n2+1, n3, db, input, solution); }
@@ -179,7 +195,7 @@ void search(int i, vector<bool>& used, int price, int score, int por, int n1, in
 }
 
 Alignment exh(const DB &db, const Input &input){
-    vector<bool> used (db.size(), false);
+    vector<bool> used (db.players.size(), false);
     Alignment solution = Alignment();
     search(0, used, 0, 0, 0, 0, 0, 0, db, input, solution);
     return solution;
@@ -189,21 +205,21 @@ Alignment exh(const DB &db, const Input &input){
 Alignment exh_fake(const DB &db, const Input &input){
     Alignment solution(input.N1, input.N2, input.N3);
     int i = 0;
-    while (db[i].pos != "por") i++;
-    solution.POR = db[i];
+    while (db.players[i].pos != "por") i++;
+    solution.POR = db.players[i];
     for (int j = 0; j < solution.nDEF; j++) {
-        while (db[i].pos != "def") i++;
-        solution.add(db[i]);
+        while (db.players[i].pos != "def") i++;
+        solution.add(db.players[i]);
         i++;
     }
     for (int j = 0; j < solution.nMID; j++) {
-        while (db[i].pos != "mig") i++;
-        solution.add(db[i]);
+        while (db.players[i].pos != "mig") i++;
+        solution.add(db.players[i]);
         i++;
     }
     for (int j = 0; j < solution.nATK; j++) {
-        while (db[i].pos != "dav") i++;
-        solution.add(db[i]);
+        while (db.players[i].pos != "dav") i++;
+        solution.add(db.players[i]);
         i++;
     }
     return solution;
@@ -217,7 +233,7 @@ int main(int argc, char** argv) {
     // Read all input
     Input input;
     input.read(argv[2]);
-    DB players = readDB(argv[1], input);
+    DB players(argv[1], input);
 
     // Aqui empieza la magia :)
     const clock_t begin_time = clock();
