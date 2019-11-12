@@ -169,10 +169,10 @@ ostream & operator << (ostream &out, const Alignment &a) {
 }
 
 
-void search(int i, vector<bool>& used, int price, int score, int por, int n1, int n2, int n3, const DB &db, const Input &input, Alignment& solution){
-    if (n1+n2+n3+por == 11 and score > solution.total_score) {
-        solution = Alignment(db, used, price, score);
-        cerr << solution;
+void search(uint i, vector<bool>& used, int price, int score, int por, int n1, int n2, int n3, const DB &db, const Input &input, Alignment& solution){
+    if (n1+n2+n3+por == 11){
+        if(score > solution.total_score) { solution = Alignment(db, used, price, score); cerr << solution << endl; }
+        return;
     }
     if (i > used.size()) return;
     else {
@@ -183,7 +183,7 @@ void search(int i, vector<bool>& used, int price, int score, int por, int n1, in
         used[i] = true;
         if (price + p.price + (10-por-n1-n2-n3)*db.minPrice <= input.T and
             score + p.score + (10-por-n1-n2-n3)*db.maxScore > solution.total_score) {
-                 if (p.pos == "por") { if (por < 1) search(i+1, used, price+p.price, score+p.score, por+1, n1, n2, n3, db, input, solution); }
+                 if (p.pos == "por") { if (por < 1)       search(i+1, used, price+p.price, score+p.score, por+1, n1, n2, n3, db, input, solution); }
             else if (p.pos == "def") { if (n1 < input.N1) search(i+1, used, price+p.price, score+p.score, por, n1+1, n2, n3, db, input, solution); }
             else if (p.pos == "mig") { if (n2 < input.N2) search(i+1, used, price+p.price, score+p.score, por, n1, n2+1, n3, db, input, solution); }
             else if (p.pos == "dav") { if (n3 < input.N3) search(i+1, used, price+p.price, score+p.score, por, n1, n2, n3+1, db, input, solution); }
@@ -241,5 +241,4 @@ int main(int argc, char** argv) {
     cout << float( clock () - begin_time ) / CLOCKS_PER_SEC << endl;
     cout << solution;
 
-    cerr << solution.dim() << endl;
 }
