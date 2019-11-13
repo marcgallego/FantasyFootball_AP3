@@ -1,8 +1,0 @@
-597.245
-POR: Oier
-DEF: Antunes;Aritz;Raúl García
-MIG: Vesga;Maksimovic;Rubén Pardo;Toni
-DAV: Sobrino;Enes Ünal;Kike García
-Punts: 1346
-Preu: 7457753
-
