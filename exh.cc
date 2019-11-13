@@ -6,6 +6,8 @@
 #include <ctime>
 using namespace std;
 
+clock_t begin_time;
+string file_name;
 
 /*****
 * INPUT
@@ -167,10 +169,24 @@ ostream & operator << (ostream &out, const Alignment &a) {
     return out;
 }
 
+void write(const Alignment& solution){
+
+    const float time = float(clock() - begin_time) / CLOCKS_PER_SEC;
+
+    ofstream out(file_name);
+    out.setf(ios::fixed);
+    out.precision(1);
+    out << time << endl;
+    out << solution << endl;
+    out.close();
+
+    cerr << time << endl;
+    cerr << solution << endl;
+}
 
 void search(uint i, vector<bool>& used, int price, int score, int por, int n1, int n2, int n3, const DB &db, const Input &input, Alignment& solution){
     if (n1+n2+n3+por == 11){
-        if(score > solution.total_score) { solution = Alignment(db, used, price, score); cerr << solution << endl; }
+        if(score > solution.total_score){ solution = Alignment(db, used, price, score); write(solution); }
         return;
     }
     if (i > used.size()) return;
@@ -198,34 +214,24 @@ Alignment exh(const DB &db, const Input &input){
     return solution;
 }
 
-void write(const string& file_name, const Alignment& solution, float time){
-    ofstream out(file_name);
-    out << time << endl;
-    out << solution << endl;
-    out.close();
-
-    cerr << time << endl;
-    cerr << solution << endl;
-}
-
 /*
 *  Example of use: ./a.out data_base.txt public_benchs/easy-1.txt solutions.txt
 */
 int main(int argc, char** argv) {
     assert(argc == 4);
 
-    cout.setf(ios::fixed);
-    cout.precision(1);
+    cerr.setf(ios::fixed);
+    cerr.precision(1);
+
+    begin_time = clock();
+    file_name = argv[3];
 
     // Read all input
     Input input;
     input.read(argv[2]);
     DB players(argv[1], input);
 
-    const clock_t begin_time = clock();
     Alignment solution = exh(players, input);
-    const float time = float( clock () - begin_time ) / CLOCKS_PER_SEC;
-
-    write(argv[3], solution, time);
+    write(solution);
 
 }
