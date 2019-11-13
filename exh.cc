@@ -150,8 +150,7 @@ struct Alignment {
     }
 };
 
-// Esto es muy extra, para poder hacer cout << Alignment;
-// Si no te gusta, se puede hacer un print normal;
+// Para poder hacer cout << Alignment;
 ostream & operator << (ostream &out, const Alignment &a) {
     out << "POR: " << a.POR.name;
     out << endl << "DEF: ";
@@ -176,8 +175,6 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
     }
     if (i > used.size()) return;
     else {
-        //for (bool b : used) cerr << b << " ";
-        //cerr << endl;
 
         Player p = db.players[i];
         used[i] = true;
@@ -198,30 +195,6 @@ Alignment exh(const DB &db, const Input &input){
     vector<bool> used (db.players.size(), false);
     Alignment solution = Alignment();
     search(0, used, 0, 0, 0, 0, 0, 0, db, input, solution);
-    return solution;
-}
-
-// Algorisme: agafa els primers jugadors de la DB sense mirar preus ni score
-Alignment exh_fake(const DB &db, const Input &input){
-    Alignment solution(input.N1, input.N2, input.N3);
-    int i = 0;
-    while (db.players[i].pos != "por") i++;
-    solution.POR = db.players[i];
-    for (int j = 0; j < solution.nDEF; j++) {
-        while (db.players[i].pos != "def") i++;
-        solution.add(db.players[i]);
-        i++;
-    }
-    for (int j = 0; j < solution.nMID; j++) {
-        while (db.players[i].pos != "mig") i++;
-        solution.add(db.players[i]);
-        i++;
-    }
-    for (int j = 0; j < solution.nATK; j++) {
-        while (db.players[i].pos != "dav") i++;
-        solution.add(db.players[i]);
-        i++;
-    }
     return solution;
 }
 
@@ -249,7 +222,6 @@ int main(int argc, char** argv) {
     input.read(argv[2]);
     DB players(argv[1], input);
 
-    // Aqui empieza la magia :)
     const clock_t begin_time = clock();
     Alignment solution = exh(players, input);
     const float time = float( clock () - begin_time ) / CLOCKS_PER_SEC;
