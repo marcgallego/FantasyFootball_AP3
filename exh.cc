@@ -51,6 +51,7 @@ struct Player {
 
     // A player is "lower" than another if it has lower score
     bool operator < (const Player& p) {
+        if(score == p.score) return price < p.price;
         return score < p.score;
     }
 };
@@ -111,7 +112,6 @@ struct Alignment {
         nDEF = n1; nMID = n2; nATK = n3;
         total_price = 0;
         total_score = 0;
-        POR.name = "";
     }
 
     Alignment(const DB& db, vector<bool>& selected, int price, int score){

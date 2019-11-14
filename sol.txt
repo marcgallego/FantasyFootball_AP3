@@ -1,4 +1,4 @@
-136.5
+134.3
 POR: Oier
 DEF: Aritz;Antunes;Raúl García
 MIG: Rubén Pardo;Vesga;Toni;Maksimovic
