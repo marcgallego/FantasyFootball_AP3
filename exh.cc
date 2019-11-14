@@ -1,8 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include <fstream>
-#include <cassert>
-#include <string>
 #include <vector>
 #include <ctime>
 using namespace std;
@@ -140,7 +138,6 @@ ostream & operator << (ostream &out, const Alignment &a) {
     return out;
 }
 
-// A player is "lower" than another if it has lower score
 bool comp(const Player& a, const Player& b) {
     if(a.score == b.score) return a.price > b.price;
     return a.score > b.score;
@@ -168,7 +165,6 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
     }
     if (i >= used.size()) return;
     else {
-
         Player p = db.players[i];
         used[i] = true;
         if (price + p.price + (10-por-n1-n2-n3)*db.minPrice <= input.T and
@@ -178,7 +174,6 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
             else if (p.pos == "mig") { if (n2 < input.N2) search(i+1, used, price+p.price, score+p.score, por, n1, n2+1, n3, db, input, solution); }
             else if (p.pos == "dav") { if (n3 < input.N3) search(i+1, used, price+p.price, score+p.score, por, n1, n2, n3+1, db, input, solution); }
         }
-
         used[i] = false;
         search(i+1, used, price, score, por, n1, n2, n3, db, input, solution);
     }
@@ -196,7 +191,11 @@ Alignment exh(DB &db, const Input &input){
 *  Example of use: ./a.out data_base.txt public_benchs/easy-1.txt solutions.txt
 */
 int main(int argc, char** argv) {
-    assert(argc == 4);
+    if(argc != 4){
+        cout << "Sintaxi incorrecta!" << endl;
+        cout << "Exemple d'ús: " << argv[0] << " data_base.txt input.txt solutions.txt" << endl;
+        return 1;
+    }
 
     cerr.setf(ios::fixed);
     cerr.precision(1);
@@ -210,6 +209,4 @@ int main(int argc, char** argv) {
     DB players(argv[1], input);
 
     Alignment solution = exh(players, input);
-    write(solution);
-
 }
