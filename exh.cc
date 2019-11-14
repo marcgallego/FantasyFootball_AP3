@@ -48,12 +48,6 @@ struct Player {
         getline(in,aux2);
         return true;
     }
-
-    // A player is "lower" than another if it has lower score
-    bool operator < (const Player& p) {
-        if(score == p.score) return price < p.price;
-        return score < p.score;
-    }
 };
 
 /*****
@@ -146,6 +140,12 @@ ostream & operator << (ostream &out, const Alignment &a) {
     return out;
 }
 
+// A player is "lower" than another if it has lower score
+bool comp(const Player& a, const Player& b) {
+    if(a.score == b.score) return a.price > b.price;
+    return a.score > b.score;
+}
+
 void write(const Alignment& solution){
 
     const float time = float(clock() - begin_time) / CLOCKS_PER_SEC;
@@ -185,7 +185,7 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
 }
 
 Alignment exh(DB &db, const Input &input){
-    sort(db.players.begin(), db.players.end());
+    sort(db.players.begin(), db.players.end(), comp);
     vector<bool> used (db.players.size(), false);
     Alignment solution = Alignment();
     search(0, used, 0, 0, 0, 0, 0, 0, db, input, solution);
