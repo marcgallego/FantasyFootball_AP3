@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <fstream>
 #include <cassert>
 #include <string>
@@ -126,30 +127,6 @@ struct Alignment {
             }
         }
     }
-
-    void add(const Player& p) {
-        if (p.pos == "por") POR = p;
-        if (p.pos == "def") {
-            assert(int(DEF.size()) < nDEF);
-            DEF.push_back(p);
-        }
-        if (p.pos == "mig") {
-            assert(int(MID.size()) < nMID);
-            MID.push_back(p);
-        }
-        if (p.pos == "dav") {
-            assert(int(ATK.size()) < nATK);
-            ATK.push_back(p);
-        }
-        total_price += p.price;
-        total_score += p.score;
-    }
-
-    int dim(){
-        int n = DEF.size() + MID.size() + ATK.size();
-        if(POR.name != "") n++;
-        return n;
-    }
 };
 
 // Para poder hacer cout << Alignment;
@@ -189,7 +166,7 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
         if(score > solution.total_score){ solution = Alignment(db, used, price, score); write(solution); }
         return;
     }
-    if (i > used.size()) return;
+    if (i >= used.size()) return;
     else {
 
         Player p = db.players[i];
@@ -207,7 +184,8 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
     }
 }
 
-Alignment exh(const DB &db, const Input &input){
+Alignment exh(DB &db, const Input &input){
+    sort(db.players.begin(), db.players.end());
     vector<bool> used (db.players.size(), false);
     Alignment solution = Alignment();
     search(0, used, 0, 0, 0, 0, 0, 0, db, input, solution);
