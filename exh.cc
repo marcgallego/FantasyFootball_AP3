@@ -158,6 +158,17 @@ void write(const Alignment& solution){
     cerr << solution << endl;
 }
 
+bool promising_solution(uint i, int m, const DB &db, int max_score, int best_score, int price, int max_price){
+    if(i+m >= db.players.size()) return false;
+    if(price+db.players[i].price > max_price) return false;
+
+    for(uint j = i; j<=i+m; ++j){
+        max_score += db.players[j].score; //Com el vector esta ordenat decreixentment per punts, com a màxim la solució afegirà els m següents jugadors.
+    }
+    if(max_score > best_score) return true;
+    return false;
+}
+
 void search(uint i, vector<bool>& used, int price, int score, int por, int n1, int n2, int n3, const DB &db, const Input &input, Alignment& solution){
     if (n1+n2+n3+por == 11){
         if(score > solution.total_score){ solution = Alignment(db, used, price, score); write(solution); }
@@ -167,8 +178,7 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
     else {
         Player p = db.players[i];
         used[i] = true;
-        if (price + p.price + (10-por-n1-n2-n3)*db.minPrice <= input.T and
-            score + p.score + (10-por-n1-n2-n3)*db.maxScore > solution.total_score) {
+        if (promising_solution(i, 10-por-n1-n2-n3, db, score, solution.total_score, price, input.T)) {
                  if (p.pos == "por") { if (por < 1)       search(i+1, used, price+p.price, score+p.score, por+1, n1, n2, n3, db, input, solution); }
             else if (p.pos == "def") { if (n1 < input.N1) search(i+1, used, price+p.price, score+p.score, por, n1+1, n2, n3, db, input, solution); }
             else if (p.pos == "mig") { if (n2 < input.N2) search(i+1, used, price+p.price, score+p.score, por, n1, n2+1, n3, db, input, solution); }
@@ -187,9 +197,7 @@ Alignment exh(DB &db, const Input &input){
     return solution;
 }
 
-/*
-*  Example of use: ./a.out data_base.txt public_benchs/easy-1.txt solutions.txt
-*/
+
 int main(int argc, char** argv) {
     if(argc != 4){
         cout << "Sintaxi incorrecta!" << endl;
