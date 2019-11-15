@@ -107,7 +107,7 @@ struct Alignment {
     }
 };
 
-// Para poder hacer cout << Alignment;
+// In order to be able to do: cout << Alignment;
 ostream & operator << (ostream &out, const Alignment &a) {
     out << "POR: " << a.POR.name;
     out << endl << "DEF: ";
@@ -130,7 +130,6 @@ bool comp(const Player& a, const Player& b) {
 }
 
 void write(const Alignment& solution){
-
     const float time = float(clock() - begin_time) / CLOCKS_PER_SEC;
 
     ofstream out(file_name);
@@ -140,16 +139,18 @@ void write(const Alignment& solution){
     out << solution << endl;
     out.close();
 
-    cerr << time << endl;
-    cerr << solution << endl;
+    cout << time << endl;
+    cout << solution << endl;
 }
 
 bool promising_solution(uint i, int m, const DB &db, int max_score, int best_score, int price, int max_price){
     if(i+m >= db.size()) return false;
     if(price+db[i].price > max_price) return false;
 
+    //As the vector is ordered descendingly by score,
+    //the max score is the sum of the points of the following m players:
     for(uint j = i; j<=i+m; ++j){
-        max_score += db[j].score; //Com el vector esta ordenat decreixentment per punts, com a màxim la solució afegirà els m següents jugadors.
+        max_score += db[j].score; 
     }
     if(max_score > best_score) return true;
     return false;
@@ -191,8 +192,8 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    cerr.setf(ios::fixed);
-    cerr.precision(1);
+    cout.setf(ios::fixed);
+    cout.precision(1);
 
     begin_time = clock();
     file_name = argv[3];
