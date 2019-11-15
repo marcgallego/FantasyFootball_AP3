@@ -50,36 +50,22 @@ struct Player {
 
 /*****
 * DB
-* Contains all the players of the database
+* Contains the players of the database
+* (added if their price is lower than the maximum price per player)
 *****/
-struct DB {
-    vector<Player> players;
-    int minPrice;
-    int maxScore;
+using DB = vector<Player>;
 
-    DB (string file, const Input& input) {
-        readDB(file, input);
-
-        minPrice = 1e9; maxScore = 0;
-        for (Player p : players) {
-            if (p.price != 0 and p.price < minPrice) minPrice = p.price;
-            if (p.score > maxScore) maxScore = p.score;
-        }
-
+DB readDB(string file, const Input& input) {
+    ifstream in(file);
+    DB playerList;
+    while (not in.eof()) {
+        Player player;
+        if (not player.read(in)) break;
+        if (player.price < input.J) playerList.push_back(player);
     }
-
-    void readDB(string file, const Input& input) {
-        ifstream in(file);
-        vector<Player> playerList;
-        while (not in.eof()) {
-            Player player;
-            if (not player.read(in)) break;
-            if (player.price < input.J) playerList.push_back(player);
-        }
-        in.close();
-        players = playerList;
-    }
-};
+    in.close();
+    return playerList;
+}
 
 
 /*****
@@ -111,7 +97,7 @@ struct Alignment {
         nDEF = nMID = nATK = 0;
         for (uint i = 0; i < selected.size(); i++) {
             if (selected[i]) {
-                Player p = db.players[i];
+                Player p = db[i];
                 if (p.pos == "por") POR = p;
                 else if (p.pos == "def") { DEF.push_back(p); nDEF++; }
                 else if (p.pos == "mig") { MID.push_back(p); nMID++; }
@@ -159,11 +145,11 @@ void write(const Alignment& solution){
 }
 
 bool promising_solution(uint i, int m, const DB &db, int max_score, int best_score, int price, int max_price){
-    if(i+m >= db.players.size()) return false;
-    if(price+db.players[i].price > max_price) return false;
+    if(i+m >= db.size()) return false;
+    if(price+db[i].price > max_price) return false;
 
     for(uint j = i; j<=i+m; ++j){
-        max_score += db.players[j].score; //Com el vector esta ordenat decreixentment per punts, com a màxim la solució afegirà els m següents jugadors.
+        max_score += db[j].score; //Com el vector esta ordenat decreixentment per punts, com a màxim la solució afegirà els m següents jugadors.
     }
     if(max_score > best_score) return true;
     return false;
@@ -176,7 +162,7 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
     }
     if (i >= used.size()) return;
     else {
-        Player p = db.players[i];
+        Player p = db[i];
         used[i] = true;
         if (promising_solution(i, 10-por-n1-n2-n3, db, score, solution.total_score, price, input.T)) {
                  if (p.pos == "por") { if (por < 1)       search(i+1, used, price+p.price, score+p.score, por+1, n1, n2, n3, db, input, solution); }
@@ -190,8 +176,8 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
 }
 
 Alignment exh(DB &db, const Input &input){
-    sort(db.players.begin(), db.players.end(), comp);
-    vector<bool> used (db.players.size(), false);
+    sort(db.begin(), db.end(), comp);
+    vector<bool> used (db.size(), false);
     Alignment solution = Alignment();
     search(0, used, 0, 0, 0, 0, 0, 0, db, input, solution);
     return solution;
@@ -214,7 +200,7 @@ int main(int argc, char** argv) {
     // Read all input
     Input input;
     input.read(argv[2]);
-    DB players(argv[1], input);
+    DB players = readDB(argv[1], input);
 
     Alignment solution = exh(players, input);
 }
