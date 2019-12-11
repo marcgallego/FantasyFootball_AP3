@@ -184,9 +184,9 @@ Alignment greedy(DB& players, const Input& input) {
         Player& p = players[i];
         if (sol.total_price + p.price <= input.T) {
                  if (p.pos == "por" and sol.POR.name == "")        sol.add(p);
-            else if (p.pos == "def" and sol.DEF.size() < sol.nDEF) sol.add(p);
-            else if (p.pos == "mig" and sol.MID.size() < sol.nMID) sol.add(p);
-            else if (p.pos == "dav" and sol.ATK.size() < sol.nATK) sol.add(p);
+            else if (p.pos == "def" and int(sol.DEF.size()) < sol.nDEF) sol.add(p);
+            else if (p.pos == "mig" and int(sol.MID.size()) < sol.nMID) sol.add(p);
+            else if (p.pos == "dav" and int(sol.ATK.size()) < sol.nATK) sol.add(p);
         }
         if (sol.isComplete()) return sol;
     }
