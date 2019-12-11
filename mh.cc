@@ -2,13 +2,27 @@
 #include <algorithm>
 #include <fstream>
 #include <vector>
-#include <ctime>
-#include <cmath>
+#include <cstdlib>
 #include <cassert>
+#include <ctime>
 using namespace std;
 
 clock_t begin_time;
 string file_name;
+
+
+/*****
+* Generates a random integer in [a,b]
+*****/
+int randInt(int a, int b) {
+    assert(b > a);
+    return rand() % (b-a+1) + a;
+}
+int randInt(int b) { // a = 0
+    assert(b > 0);
+    return rand() % (b+1);
+}
+
 
 /*****
 * INPUT
@@ -50,7 +64,6 @@ struct Player {
     }
 };
 
-
 /*****
 * DB
 * Contains the players of the database
@@ -87,28 +100,12 @@ struct Alignment {
 
     Alignment() {
         total_price = total_score = 0;
-        POR.name = "";
     }
 
     Alignment(int n1, int n2, int n3) {
         nDEF = n1; nMID = n2; nATK = n3;
         total_price = 0;
         total_score = 0;
-        POR.name = "";
-    }
-
-    Alignment(const DB& db, vector<bool>& selected, int price, int score){
-        total_price = price; total_score = score;
-        nDEF = nMID = nATK = 0;
-        for (uint i = 0; i < selected.size(); i++) {
-            if (selected[i]) {
-                Player p = db[i];
-                if (p.pos == "por") POR = p;
-                else if (p.pos == "def") { DEF.push_back(p); nDEF++; }
-                else if (p.pos == "mig") { MID.push_back(p); nMID++; }
-                else if (p.pos == "dav") { ATK.push_back(p); nATK++; }
-            }
-        }
     }
 
     void add(const Player& p) {
@@ -132,6 +129,21 @@ struct Alignment {
     bool isComplete() {
         return int(POR.name != "") + DEF.size() + ATK.size() + MID.size() == 11;
     }
+
+    Player getPlayer(int i) {
+        if (i == 0) return POR;
+        if (i <= nDEF) return DEF[i-1];
+        if (i <= nMID+nDEF) return MID[i-(nDEF+1)];
+        if (i <= nATK+nMID+nDEF) return ATK[i-(nMID+nDEF+1)];
+        assert(false);
+    }
+
+    void exchangePlayer(int i, Player newP) {
+        if (i == 0) POR = newP;
+        if (i < nDEF) DEF[i-1] = newP;
+        if (i < nMID+nDEF) MID[i-nDEF] = newP;
+        if (i < nATK+nMID+nDEF) ATK[i-nMID] = newP;
+    }
 };
 
 // In order to be able to do: cout << Alignment;
@@ -140,7 +152,7 @@ ostream & operator << (ostream &out, const Alignment &a) {
     out << endl << "DEF: ";
     for (int i = 0; i < a.nDEF; i++)
         out << (i == 0 ? "" : ";") << a.DEF[i].name;
-    out << endl << "MID: ";
+    out << endl << "MIG: ";
     for (int i = 0; i < a.nMID; i++)
         out << (i == 0 ? "" : ";") << a.MID[i].name;
     out << endl << "DAV: ";
@@ -150,15 +162,6 @@ ostream & operator << (ostream &out, const Alignment &a) {
     out << "Preu: " << a.total_price << endl;
     return out;
 }
-
-//Exponential coeffitients used as ordering criteria (function comp):
-const double a = 3.2;
-const double b = 0.6;
-
-bool comp(const Player& p1, const Player& p2) {
-    return pow(p1.score, a)*pow(p2.price, b) > pow(p2.score, a)*pow(p1.price, b);
-}
-
 
 void write(const Alignment& solution){
     const float time = float(clock() - begin_time) / CLOCKS_PER_SEC;
@@ -175,25 +178,67 @@ void write(const Alignment& solution){
 }
 
 
-Alignment greedy(DB& players, const Input& input) {
+Alignment generateInitialAlignment(const DB& players, const Input& input) {
     Alignment sol(input.N1, input.N2, input.N3);
-    sort(players.begin(), players.end(), comp);
-    
+
     for (uint i = 0; i < players.size(); i++) {
-        Player& p = players[i];
+        const Player& p = players[i];
         if (sol.total_price + p.price <= input.T) {
-                 if((p.pos == "por" and sol.POR.name == "") or
+                 if ((p.pos == "por" and sol.POR.name == "") or
                     (p.pos == "def" and sol.DEF.size() < sol.nDEF) or
                     (p.pos == "mig" and sol.MID.size() < sol.nMID) or
                     (p.pos == "dav" and sol.ATK.size() < sol.nATK)) sol.add(p);
         }
         if (sol.isComplete()) return sol;
     }
-    assert(false); //As there are fake players, we always can make a team 
+    assert(false); //As there are fake players, we always can make a team
 }
 
-int main(int argc, char** argv) {
+Alignment pickRandomNeighbour(Alignment a, const Input& input, const DB& players) {
+    int rp = randInt(10); //Random player from original alignment
+    int ri = randInt(players.size()); //Random player from DB
+    bool selected = false;
+    do {
+        if (players[ri].pos == a.getPlayer(rp).pos and
+            a.total_price - a.getPlayer(rp).price + players[ri].price < input.T) {
+                selected = true;
+                a.exchangePlayer(ri, players[ri]);
+            }
+        else ri = randInt(players.size());
+    } while (not selected);
+    return a;
+}
 
+const double T0 = 50;
+
+double updateT(double oldT){
+    return oldT - 0.1;
+}
+
+bool randomChosen(double T) {
+    return randInt(100) < T;
+}
+
+void metaheuristic(const DB& players, const Input& input) {
+    Alignment sol = generateInitialAlignment(players, input);
+    double T = T0;
+    int i = 0;
+    while (i++ < 1000) {
+        Alignment a = pickRandomNeighbour(sol, input, players);
+        if (a.total_score > sol.total_score) {
+            sol = a;
+            write(sol);
+        }
+        else if (randomChosen(T)) sol = a;
+        T = updateT(T);
+        cerr << "Punts: " << sol.total_score << endl;
+    }
+    write(sol);
+}
+
+
+
+int main(int argc, char** argv) {
     if(argc != 4){
         cout << "Sintaxi incorrecta!" << endl;
         cout << "Exemple d'ús: " << argv[0] << " data_base.txt input.txt solutions.txt" << endl;
@@ -211,8 +256,5 @@ int main(int argc, char** argv) {
     input.read(argv[2]);
     DB players = readDB(argv[1], input);
 
-    // Generate and write the solution
-    Alignment solution = greedy(players, input);
-    write(solution);
+    metaheuristic(players, input);
 }
-

@@ -163,7 +163,7 @@ void search(uint i, vector<bool>& used, int price, int score, int por, int n1, i
     }
     if (i >= used.size()) return;
     else {
-        Player& p = db[i];
+        const Player& p = db[i];
         used[i] = true;
         if (promising_solution(i, 10-por-n1-n2-n3, db, score, solution.total_score, price, input.T)) {
                  if (p.pos == "por") { if (por < 1)       search(i+1, used, price+p.price, score+p.score, por+1, n1, n2, n3, db, input, solution); }
