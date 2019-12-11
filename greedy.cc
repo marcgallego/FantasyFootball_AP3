@@ -4,6 +4,7 @@
 #include <vector>
 #include <ctime>
 #include <cmath>
+#include <cassert>
 using namespace std;
 
 clock_t begin_time;
@@ -86,6 +87,7 @@ struct Alignment {
 
     Alignment() {
         total_price = total_score = 0;
+        POR.name = "";
     }
 
     Alignment(int n1, int n2, int n3) {
@@ -132,8 +134,7 @@ struct Alignment {
     }
 };
 
-// Esto es muy extra, para poder hacer cout << Alignment;
-// Si no te gusta, se puede hacer un print normal;
+// In order to be able to do: cout << Alignment;
 ostream & operator << (ostream &out, const Alignment &a) {
     out << "POR: " << a.POR.name;
     out << endl << "DEF: ";
@@ -154,11 +155,9 @@ double a = 3.2;
 double b = 0.6;
 
 bool comp(const Player& p1, const Player& p2) {
-    //if(a.score == b.score) return a.price > b.price;
-    //return a.score > b.score;
     if (p1.price == 0) return false;
     if (p2.price == 0) return true;
-    return (pow(p1.score, a))*pow(p2.price, b) > pow(p2.score, a)*pow(p1.price, b);
+    return pow(p1.score, a)*pow(p2.price, b) > pow(p2.score, a)*pow(p1.price, b);
 }
 
 
@@ -178,45 +177,42 @@ void write(const Alignment& solution){
 
 
 Alignment greedy(DB& players, const Input& input) {
-    Alignment solution(input.N1, input.N2, input.N3);
+    Alignment sol(input.N1, input.N2, input.N3);
     sort(players.begin(), players.end(), comp);
-    cerr << "sorted" << endl;
+    
     for (uint i = 0; i < players.size(); i++) {
         Player& p = players[i];
-        if (solution.total_price + p.price <= input.T) {
-            if (p.pos == "por") {
-                if (solution.POR.name == "")
-                    solution.add(p);
-            } else if (p.pos == "def") {
-                if (solution.DEF.size() < solution.nDEF)
-                    solution.add(p);
-            } else if (p.pos == "mig") {
-                if (solution.MID.size() < solution.nMID)
-                    solution.add(p);
-            } else if (p.pos == "dav") {
-                if (solution.ATK.size() < solution.nATK)
-                    solution.add(p);
-            }
-            else assert(false);
-
-            if (solution.isComplete()) return solution;
+        if (sol.total_price + p.price <= input.T) {
+                 if (p.pos == "por" and sol.POR.name == "")        sol.add(p);
+            else if (p.pos == "def" and sol.DEF.size() < sol.nDEF) sol.add(p);
+            else if (p.pos == "mig" and sol.MID.size() < sol.nMID) sol.add(p);
+            else if (p.pos == "dav" and sol.ATK.size() < sol.nATK) sol.add(p);
         }
+        if (sol.isComplete()) return sol;
     }
+    assert(false); //As there are fake players, we always can make a team 
 }
 
-
 int main(int argc, char** argv) {
-    assert(argc == 4);
+
+    if(argc != 4){
+        cout << "Sintaxi incorrecta!" << endl;
+        cout << "Exemple d'ús: " << argv[0] << " data_base.txt input.txt solutions.txt" << endl;
+        return 1;
+    }
+
+    cout.setf(ios::fixed);
+    cout.precision(1);
+
+    begin_time = clock();
+    file_name = argv[3];
 
     // Read all input
     Input input;
     input.read(argv[2]);
     DB players = readDB(argv[1], input);
 
-    // Aqui empieza la magia :)
-    begin_time = clock();
-    file_name = argv[3];
+    // Generate and write the solution
     Alignment solution = greedy(players, input);
-    //cout << float( clock () - begin_time ) / CLOCKS_PER_SEC << endl;
     write(solution);
 }
