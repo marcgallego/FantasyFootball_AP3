@@ -220,7 +220,7 @@ ostream & operator << (ostream &out, const Alignment &a) {
     return out;
 }
 
-void write(const Alignment& solution){
+void write(const Alignment& solution, bool print){
     const float time = float(clock() - begin_time) / CLOCKS_PER_SEC;
 
     ofstream out(file_name);
@@ -230,8 +230,10 @@ void write(const Alignment& solution){
     out << solution << endl;
     out.close();
 
-    cout << time << endl;
-    cout << solution << endl;
+    if(print){
+        cout << time << endl;
+        cout << solution << endl;
+    }
 }
 
 Alignment generateInitialAlignment(const Input& input, const DB& players) {
@@ -298,11 +300,13 @@ void metaheuristic(const DB& players, const Input& input) {
         //Nomès imprimeixo una nova solució si és millor que la que ja tenia:
         if (sol.total_score > best.total_score){
             best = sol;
-            write(best);
+            write(best, true);
         }
 
         T = updateT(T);
+
     }
+    write(best, true);
 }
 
 
