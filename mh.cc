@@ -260,26 +260,32 @@ Alignment generateInitialAlignment(const Input& input, const DB& players) {
     return sol; //As there are fake players, we always can make a team
 }
 
+
+//Estaria bé posar un límit d'iteracions
 Alignment pickRandomNeighbour(Alignment a, const Input& input, const DB& players) {
     int rp = randInt(10); 
+
     const Player& p = a.getPlayer(rp); //Random player from original alignment
     Player ri = randPlayer(p.pos, players); //Random player from DB
     bool selected = false;
-    do {
-        if(a.total_price - p.price + ri.price < input.T) selected = a.exchangePlayer(rp, ri);
-        else ri = randPlayer(p.pos, players);
-    } while (not selected);
+
+    while (not selected) {
+        if (a.total_price - p.price + ri.price < input.T) selected = a.exchangePlayer(rp, ri);
+        if (not selected) ri = randPlayer(p.pos, players);
+    }
     return a;
 }
 
-const double T0 = 50;
+const double T0 = 70;
 
 double updateT(double oldT){
-    return oldT - 0.1;
+    oldT -= 0.1;
+    if(oldT < 1) return 1;
+    return oldT;
 }
 
 bool randomChosen(double T) {
-    return randInt(100) < T;
+    return randInt(100) <= T;
 }
 
 void metaheuristic(const DB& players, const Input& input) {
@@ -287,9 +293,9 @@ void metaheuristic(const DB& players, const Input& input) {
     Alignment best;
     double T = T0;
     int i = 0;
-    while (i++ < 1e9) {
+    while (i++ < 1e5) {
         Alignment a = pickRandomNeighbour(sol, input, players);
-        cout << a << endl;
+
         if (a.total_score > sol.total_score) {
             sol = a;
             write(sol);
@@ -298,7 +304,6 @@ void metaheuristic(const DB& players, const Input& input) {
         T = updateT(T);
     }
     write(sol);
-    cout << "I'm done" << endl;
 }
 
 
