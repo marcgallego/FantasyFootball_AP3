@@ -276,7 +276,7 @@ Alignment pickRandomNeighbour(Alignment a, const Input& input, const DB& players
     return a;
 }
 
-const double T0 = 70;
+const double T0 = 40;
 
 double updateT(double oldT){
     oldT -= 0.1;
@@ -289,21 +289,22 @@ bool randomChosen(double T) {
 }
 
 void metaheuristic(const DB& players, const Input& input) {
+    Alignment best = Alignment();
     Alignment sol = generateInitialAlignment(input, players);
-    Alignment best;
     double T = T0;
     int i = 0;
-    while (i++ < 1e5) {
+    while (i++ < 1e6) {
         Alignment a = pickRandomNeighbour(sol, input, players);
 
-        if (a.total_score > sol.total_score) {
-            sol = a;
-            write(sol);
+        if (a.total_score > sol.total_score or randomChosen(T)) sol = a;
+
+        if (sol.total_score > best.total_score){
+            best = sol;
+            write(best);
         }
-        else if (randomChosen(T)) sol = a;
+
         T = updateT(T);
     }
-    write(sol);
 }
 
 
