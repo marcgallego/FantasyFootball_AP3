@@ -289,7 +289,7 @@ void metaheuristic(const DB& players, const Input& input) {
     Alignment sol = generateInitialAlignment(input, players);
     double T = T0;
     int i = 0;
-    while (i++ < 1e9) {
+    while (i++ < 1e7) {
         Alignment a = pickRandomNeighbour(sol, input, players);
 
         //Actualitzo sol si milloro o amb una probabilitat Pr(T):
