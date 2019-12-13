@@ -140,7 +140,7 @@ ostream & operator << (ostream &out, const Alignment &a) {
     out << endl << "DEF: ";
     for (int i = 0; i < a.nDEF; i++)
         out << (i == 0 ? "" : ";") << a.DEF[i].name;
-    out << endl << "MID: ";
+    out << endl << "MIG: ";
     for (int i = 0; i < a.nMID; i++)
         out << (i == 0 ? "" : ";") << a.MID[i].name;
     out << endl << "DAV: ";
@@ -183,9 +183,9 @@ Alignment greedy(DB& players, const Input& input) {
         Player& p = players[i];
         if (sol.total_price + p.price <= input.T) {
                  if((p.pos == "por" and sol.POR.name == "") or
-                    (p.pos == "def" and sol.DEF.size() < sol.nDEF) or
-                    (p.pos == "mig" and sol.MID.size() < sol.nMID) or
-                    (p.pos == "dav" and sol.ATK.size() < sol.nATK)) sol.add(p);
+                    (p.pos == "def" and int(sol.DEF.size()) < sol.nDEF) or
+                    (p.pos == "mig" and int(sol.MID.size()) < sol.nMID) or
+                    (p.pos == "dav" and int(sol.ATK.size()) < sol.nATK)) sol.add(p);
         }
         if (sol.isComplete()) return sol;
     }
