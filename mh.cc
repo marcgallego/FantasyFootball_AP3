@@ -203,7 +203,6 @@ Player randPlayer(const string& pos, const DB& db){
     assert(false);
 }
 
-
 // In order to be able to do: cout << Alignment;
 ostream & operator << (ostream &out, const Alignment &a) {
     out << "POR: " << a.POR.name;
@@ -235,7 +234,6 @@ void write(const Alignment& solution){
     cout << solution << endl;
 }
 
-
 Alignment generateInitialAlignment(const Input& input, const DB& players) {
     Alignment sol(input.N1, input.N2, input.N3);
     Player p;
@@ -260,8 +258,6 @@ Alignment generateInitialAlignment(const Input& input, const DB& players) {
     return sol; //As there are fake players, we always can make a team
 }
 
-
-//Estaria bé posar un límit d'iteracions
 Alignment pickRandomNeighbour(Alignment a, const Input& input, const DB& players) {
     int rp = randInt(10); 
 
@@ -293,7 +289,7 @@ void metaheuristic(const DB& players, const Input& input) {
     Alignment sol = generateInitialAlignment(input, players);
     double T = T0;
     int i = 0;
-    while (i++ < 1e6) {
+    while (i++ < 1e9) {
         Alignment a = pickRandomNeighbour(sol, input, players);
 
         //Actualitzo sol si milloro o amb una probabilitat Pr(T):
