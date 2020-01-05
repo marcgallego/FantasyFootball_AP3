@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <ctime>
+#include <cmath>
 
 using namespace std;
 
@@ -189,9 +190,17 @@ int randInt(int a, int b) {
     assert(b > a);
     return rand() % (b-a+1) + a;
 }
+
 int randInt(int b) { // a = 0
     assert(b > 0);
     return rand() % (b+1);
+}
+
+/*****
+ * Generates a random double between (0,1)
+ *****/
+double randDouble() { 
+    return rand() / RAND_MAX;
 }
 
 Player randPlayer(const string& pos, const DB& db){
@@ -264,26 +273,30 @@ Alignment pickRandomNeighbour(Alignment a, const Input& input, const DB& players
     int rp = randInt(10); 
 
     const Player& p = a.getPlayer(rp); //Random player from original alignment
-    Player ri = randPlayer(p.pos, players); //Random player from DB
-    bool selected = false;
 
+    bool selected = false;
     while (not selected) {
+        Player ri = randPlayer(p.pos, players); // Random player from DB
         if (a.total_price - p.price + ri.price < input.T) selected = a.exchangePlayer(rp, ri);
-        if (not selected) ri = randPlayer(p.pos, players);
     }
     return a;
 }
 
-const double T0 = 40;
+const double T0 = 1e9; // 40
+const double alpha = 0.99999;
 
 double updateT(double oldT){
-    oldT -= 0.1;
-    if(oldT < 1) return 1;
+    oldT *= alpha; //oldT -= 0.1;
+    if(oldT < 0.05)return 0.05;
     return oldT;
 }
 
-bool randomChosen(double T) {
+/*bool randomChosen(double T) {
     return randInt(100) <= T;
+}*/
+
+bool randomChosen(const Alignment& sol, const Alignment& worse_sol, const double T) {
+    return randDouble() < exp((worse_sol.total_score - sol.total_score)/T);
 }
 
 void metaheuristic(const DB& players, const Input& input) {
@@ -291,16 +304,17 @@ void metaheuristic(const DB& players, const Input& input) {
     Alignment sol = generateInitialAlignment(input, players);
     double T = T0;
     int i = 0;
-    while (i++ < 1e7) {
+    while (true) {
         Alignment a = pickRandomNeighbour(sol, input, players);
 
         //Actualitzo sol si milloro o amb una probabilitat Pr(T):
-        if (a.total_score > sol.total_score or randomChosen(T)) sol = a;
+        if (a.total_score > sol.total_score or randomChosen(sol, a, T)) sol = a;
 
         //Nomès imprimeixo una nova solució si és millor que la que ja tenia:
         if (sol.total_score > best.total_score){
             best = sol;
             write(best, true);
+            cerr << "T actual: " << T << endl;
         }
 
         T = updateT(T);
@@ -333,3 +347,4 @@ int main(int argc, char** argv) {
 
     metaheuristic(players, input);
 }
+
