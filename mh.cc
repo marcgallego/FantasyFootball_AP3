@@ -287,7 +287,7 @@ const double alpha = 0.99999;
 
 double updateT(double oldT){
     oldT *= alpha; //oldT -= 0.1;
-    if(oldT < 0.05)return 0.05;
+    if(oldT < 0.05) return 0.05;
     return oldT;
 }
 
@@ -303,7 +303,6 @@ void metaheuristic(const DB& players, const Input& input) {
     Alignment best = Alignment();
     Alignment sol = generateInitialAlignment(input, players);
     double T = T0;
-    int i = 0;
     while (true) {
         Alignment a = pickRandomNeighbour(sol, input, players);
 
@@ -320,7 +319,6 @@ void metaheuristic(const DB& players, const Input& input) {
         T = updateT(T);
 
     }
-    write(best, true);
 }
 
 
