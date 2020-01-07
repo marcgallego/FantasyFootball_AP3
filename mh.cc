@@ -302,7 +302,7 @@ void metaheuristic(const DB& players, const Input& input) {
     while (true) {
         Alignment a = pickRandomNeighbour(sol, input, players);
 
-	//The solution is updated if it improves or according to a probability Pr(T):
+	    //The solution is updated if it improves or according to a probability Pr(T):
         if (a.total_score > sol.total_score or randomChosen(sol, a, T)) sol = a;
 
         //A new solution is printed iff it improves the best solution found so far:
@@ -310,6 +310,7 @@ void metaheuristic(const DB& players, const Input& input) {
             best = sol;
             write(best, true);
         }
+        
         T = updateT(T);
     }
 }
