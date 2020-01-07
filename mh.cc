@@ -199,7 +199,7 @@ int randInt(int b) { // a = 0
 /*****
  * Generates a random double between (0,1)
  *****/
-double randDouble() { 
+double randDouble() {
     return rand() / RAND_MAX;
 }
 
@@ -282,18 +282,14 @@ Alignment pickRandomNeighbour(Alignment a, const Input& input, const DB& players
     return a;
 }
 
-const double T0 = 1e9; // 40
+const double T0 = 1e9;
 const double alpha = 0.99999;
 
 double updateT(double oldT){
-    oldT *= alpha; //oldT -= 0.1;
+    oldT *= alpha;
     if(oldT < 0.05) return 0.05;
     return oldT;
 }
-
-/*bool randomChosen(double T) {
-    return randInt(100) <= T;
-}*/
 
 bool randomChosen(const Alignment& sol, const Alignment& worse_sol, const double T) {
     return randDouble() < exp((worse_sol.total_score - sol.total_score)/T);
@@ -306,18 +302,15 @@ void metaheuristic(const DB& players, const Input& input) {
     while (true) {
         Alignment a = pickRandomNeighbour(sol, input, players);
 
-        //Actualitzo sol si milloro o amb una probabilitat Pr(T):
+	//The solution is updated if it improves or according to a probability Pr(T):
         if (a.total_score > sol.total_score or randomChosen(sol, a, T)) sol = a;
 
-        //Nomès imprimeixo una nova solució si és millor que la que ja tenia:
+        //A new solution is printed iff it improves the best solution found so far:
         if (sol.total_score > best.total_score){
             best = sol;
             write(best, true);
-            cerr << "T actual: " << T << endl;
         }
-
         T = updateT(T);
-
     }
 }
 
